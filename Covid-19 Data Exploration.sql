@@ -49,6 +49,8 @@ GROUP BY Location
 ORDER BY TotalDeathCount DESC;
 
 
+
+
 ----														GLOBAL NUMBERS														----
 
 -- Total cases, total deaths, and death percentage globally for each day
@@ -64,8 +66,6 @@ SELECT  SUM(new_cases) AS Total_Cases, SUM(CAST(new_deaths AS INT)) AS Total_Dea
     SUM(CAST(new_deaths AS INT)) / SUM(new_cases) * 100 AS Death_Percentage
 FROM SqlCovidProject..CovidDeaths$
 WHERE continent IS NOT NULL;
-
-
 
 
 
@@ -118,7 +118,6 @@ RollingPeopleVaccinated numeric
 Insert into #PercentPopulationVaccinated
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(float,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
---, (RollingPeopleVaccinated/population)*100
 From SqlCovidProject..CovidDeaths$ dea
 Join SqlCovidProject..CovidVaccinations$ vac
 	On dea.location = vac.location
@@ -128,6 +127,9 @@ order by 2,3
 
 Select *, (RollingPeopleVaccinated/Population)*100
 From #PercentPopulationVaccinated
+
+
+
 
 ----														Creating a view to store data for later visualizations														----
 
