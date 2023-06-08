@@ -50,7 +50,7 @@ The project includes the following SQL queries and views:
 
 ## Usage
 
-The SQL code provided in this repository can be executed against the "SqlCovidProject" database. You may run the queries individually or create and use the views for easier data exploration. Modify the code as needed to fit your specific database environment.
+The SQL code provided in this repository can be executed against the "COVID-19 dataset". You may run the queries individually or create and use the views for easier data exploration. Modify the code as needed to fit your specific database environment.
 
 ## Requirements
 
